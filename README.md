@@ -35,10 +35,21 @@ Please replace ttyUSB with ttyACM in case of using Arduino Uno.
     $ sudo slcan_attach -f -s6 -o /dev/ttyUSB0  
     $ sudo slcand -S 1000000 ttyUSB0 can0  
     $ sudo ifconfig can0 up  
+or
+(where -s4 is 125k, -s6 is 500k etc, check documentation)
 
-then,
+    $ sudo slcand -o -t hw -s4 -F -S 1000000 /dev/ttyACM0 can0
+    $ sudo ip link set up can0
+    $ sudo ifconfig
+    
+then (won't always get something),
 
     $ candump can0
+
+or try sending,
+
+    $ cansend can0 111#00
+
 
 ## Cleanup
 
